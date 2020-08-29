@@ -1,0 +1,20 @@
+{
+  "name": "web-template",
+  "workspaces": [
+    "apps/*"
+  ],
+  "private": true,
+  "version": "0.0.0",
+  "description": "web app template",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/onichandame/web-template.git"
+  },
+  "author": "onichandame",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/onichandame/web-template/issues"
+  },
+  "homepage": "https://github.com/onichandame/web-template#readme"
+}
