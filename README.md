@@ -1,6 +1,6 @@
-# web-template
+# Web Template
 
-full stack web app including frontend and backend
+full stack web app including both frontend and backend.
 
 # Author
 
