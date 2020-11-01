@@ -1,46 +1,50 @@
 {
   "name": "frontend",
-  "version": "0.1.0",
   "private": true,
-  "homepage": ".",
+  "description": "A simple starter to get up and developing quickly with Gatsby",
+  "version": "0.0.0",
+  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
-    "@apollo/client": "^3.1.4",
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.3.2",
-    "@testing-library/user-event": "^7.1.2",
-    "@types/jest": "^24.0.0",
-    "@types/node": "^12.0.0",
-    "@types/react": "^16.9.0",
-    "@types/react-dom": "^16.9.0",
-    "graphql": "^15.3.0",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-scripts": "3.4.3",
-    "typescript": "~3.7.2"
+    "@mdx-js/mdx": "^1.6.19",
+    "@mdx-js/react": "^1.6.19",
+    "gatsby": "^2.21.21",
+    "gatsby-image": "^2.4.3",
+    "gatsby-plugin-manifest": "^2.4.2",
+    "gatsby-plugin-mdx": "^1.2.7",
+    "gatsby-plugin-offline": "^3.2.1",
+    "gatsby-plugin-react-helmet": "^3.3.1",
+    "gatsby-plugin-sharp": "^2.6.2",
+    "gatsby-plugin-typescript": "^2.4.2",
+    "gatsby-source-filesystem": "^2.3.1",
+    "gatsby-transformer-json": "^2.4.2",
+    "gatsby-transformer-sharp": "^2.5.2",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-helmet": "^6.0.0"
   },
-  "prettier": {
-    "semi": false,
-    "singleQuote": true
+  "devDependencies": {
+    "@types/react-helmet": "^6.1.0",
+    "prettier-eslint": "^11.0.0",
+    "ts-node": "^9.0.0",
+    "yarn-or-npm": "^3.0.1"
   },
+  "keywords": [
+    "gatsby"
+  ],
+  "license": "MIT",
   "scripts": {
-    "dev": "react-scripts start --port $PORT",
-    "build": "react-scripts build",
-    "test": "jest --passWithNoTests -o",
-    "eject": "react-scripts eject"
+    "build": "gatsby build",
+    "dev": "gatsby develop -H 0.0.0.0 -p $PORT",
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\"",
+    "start": "gatsby serve -H 0.0.0.0 -p $PORT",
+    "clean": "gatsby clean",
+    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
   },
-  "eslintConfig": {
-    "extends": "react-app"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gatsbyjs/gatsby-starter-default"
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+  "bugs": {
+    "url": "https://github.com/gatsbyjs/gatsby/issues"
   }
 }
