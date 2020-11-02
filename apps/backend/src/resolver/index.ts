@@ -50,4 +50,7 @@ class TestResolver {
   }
 }
 
-export const schema = buildSchemaSync({ resolvers: [TestResolver] })
+export const schema = buildSchemaSync({
+  resolvers: [TestResolver],
+  validate: false,
+})
