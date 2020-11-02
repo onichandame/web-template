@@ -1,10 +1,10 @@
-import React, { FC } from "react"
-import { graphql, PageProps } from "gatsby"
-import { gql } from "@apollo/client"
-import { useQuery } from "@apollo/client"
+import React, { FC } from 'react'
+import { graphql, PageProps } from 'gatsby'
+import { gql } from '@apollo/client'
+import { useQuery } from '@apollo/client'
 
-import { Image } from "../components/Image"
-import { LocalizedLink } from "../i18n"
+import { Image } from '../components/Image'
+import { LocalizedLink } from '../i18n'
 
 type Props = PageProps<
   {
