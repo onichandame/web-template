@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 import { graphql, PageProps } from 'gatsby'
 import { gql } from '@apollo/client'
-import { useQuery } from '@apollo/client'
+import { useQuery, useSubscription } from '@apollo/client'
 
 import { Image } from '../components/Image'
 import { LocalizedLink } from '../i18n'
@@ -37,14 +37,23 @@ const Query = gql`
   }
 `
 
+const Subscription = gql`
+  query chat($name: String!) {
+    chat(name: $name) {
+      timestamp
+      message
+    }
+  }
+`
+
 const IndexPage: FC<Props> = ({ data: { allMdx } }) => {
-  const { data, error, loading } = useQuery<
-    { greet: { message: string } },
-    { name: string }
-  >(Query, {
-    pollInterval: 1000,
+  useQuery<{ greet: { message: string } }, { name: string }>(Query, {
     variables: { name: `bill` }
   })
+  const { data, error, loading } = useSubscription<
+    { chat: { message: string } },
+    { name: string }
+  >(Subscription, { variables: { name: `bill` } })
   return (
     <>
       <h1>Hi</h1>
@@ -58,7 +67,7 @@ const IndexPage: FC<Props> = ({ data: { allMdx } }) => {
           : loading
           ? `loading`
           : data
-          ? data.greet.message
+          ? data.chat.message
           : `not loaded`}
       </h3>
       <div>

@@ -13,14 +13,16 @@ const app = Express()
 
 // backend
 app.use(
-  createProxyMiddleware(`/graphql`, {
+  `/api`,
+  createProxyMiddleware({
     target: `http://127.0.0.1:9002`,
     ws: true,
   })
 )
 // frontend
 app.use(
-  createProxyMiddleware(`/`, { target: `http://127.0.0.1:9001`, ws: true })
+  `/`,
+  createProxyMiddleware({ target: `http://127.0.0.1:9001`, ws: true })
 )
 
 app.listen(port, () => {
