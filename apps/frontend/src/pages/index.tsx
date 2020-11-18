@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 import { graphql, PageProps } from 'gatsby'
 import { gql } from '@apollo/client'
-import { useQuery, useSubscription } from '@apollo/client'
+import { useSubscription } from '@apollo/client'
 
 import { Image } from '../components/Image'
 import { LocalizedLink } from '../i18n'
@@ -28,15 +28,6 @@ type Props = PageProps<
   { locale: string }
 >
 
-const Query = gql`
-  query greet($name: String!) {
-    greet(name: $name) {
-      timestamp
-      message
-    }
-  }
-`
-
 const Subscription = gql`
   query chat($name: String!) {
     chat(name: $name) {
@@ -47,9 +38,6 @@ const Subscription = gql`
 `
 
 const IndexPage: FC<Props> = ({ data: { allMdx } }) => {
-  useQuery<{ greet: { message: string } }, { name: string }>(Query, {
-    variables: { name: `bill` }
-  })
   const { data, error, loading } = useSubscription<
     { chat: { message: string } },
     { name: string }

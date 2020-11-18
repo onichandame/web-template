@@ -16,6 +16,8 @@ app.use(
   `/api`,
   createProxyMiddleware({
     target: `http://127.0.0.1:9002`,
+    pathRewrite: path => path.replace(new RegExp(`^/api`), ``),
+    changeOrigin: true,
     ws: true,
   })
 )

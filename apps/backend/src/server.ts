@@ -7,7 +7,7 @@ import { schema } from './resolver'
 const app = new Koa()
 const router = new KoaRouter()
 
-router.get(`/api`, (ctx, next) => {
+router.get(`/`, (ctx, next) => {
   next()
   ctx.body = `hi`
 })
@@ -15,10 +15,14 @@ router.get(`/api`, (ctx, next) => {
 app.use(router.routes()).use(router.allowedMethods())
 
 const apollo = new ApolloServer({
+  playground: {
+    endpoint: `/api/graphql`,
+    subscriptionEndpoint: `/api/graphql`,
+  },
   schema,
-  subscriptions: { path: `/api/graphql` },
+  subscriptions: { path: `/graphql` },
 })
 
-apollo.applyMiddleware({ app, path: `/api/graphql` })
+apollo.applyMiddleware({ app, path: `/graphql` })
 
 export { apollo, app }

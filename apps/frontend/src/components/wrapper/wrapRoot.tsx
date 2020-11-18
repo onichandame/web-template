@@ -14,7 +14,7 @@ import fetch from 'isomorphic-fetch'
 
 const httpLink = new HttpLink({ uri: `/api/graphql`, fetch })
 const wsLink = new WebSocketLink({
-  uri: `ws://localhost/api/graphql`,
+  uri: `ws://work.onichandame.com:3000/api/graphql`,
   options: { reconnect: true },
   webSocketImpl: ws
 })
