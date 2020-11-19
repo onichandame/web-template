@@ -4,6 +4,7 @@ import {
   Root,
   PubSub,
   Subscription,
+  Mutation,
   Query,
   Args,
   ArgsType,
@@ -12,9 +13,13 @@ import {
   ObjectType,
   buildSchemaSync,
 } from 'type-graphql'
-import { greet } from '../service'
+import { v4 as randStr } from 'uuid'
 
-const friends: string[] = []
+import { hash, verify } from '../service'
+
+const members: { name: string; key: string }[] = []
+
+const topic = randStr()
 
 @ObjectType()
 class Greeting {
@@ -25,27 +30,26 @@ class Greeting {
 }
 
 @ArgsType()
-class GreetArgs {
-  @Field(() => String, { nullable: true })
-  name?: string
+class JoinArgs {
+  @Field(() => String, { nullable: false })
+  name!: string
 }
 
 @Resolver(Greeting)
 class TestResolver {
   @Query(() => Greeting)
-  greet(@Args() { name }: GreetArgs, @PubSub() pubSub: PubSubEngine): Greeting {
-    const n = name || 'bro'
-    if (friends.indexOf(n) < 0) {
-      friends.push(n)
-      setInterval(() => {
-        pubSub.publish(n, n)
-      }, 1000)
-    }
-    return greet(n)
+  knock(): string {
+    return `this is a meeting room. anyone joined can speak and listen`
   }
 
+  @Mutation()
+  join(@Args() {}: JoinArgs, @PubSub() pubSub: PubSubEngine) {}
+
+  @Mutation()
+  speak(@Args() {}: JoinArgs, @PubSub() pubSub: PubSubEngine) {}
+
   @Subscription({ topics: ({ args }) => args.name || `bro` })
-  chat(@Args() {}: GreetArgs, @Root() n: string): Greeting {
+  listen(@Args() {}: GreetArgs, @Root() n: string): Greeting {
     return greet(n)
   }
 }

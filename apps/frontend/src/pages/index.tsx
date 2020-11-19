@@ -28,6 +28,14 @@ type Props = PageProps<
   { locale: string }
 >
 
+const GreetSchema = gql`
+  query chat($name: String!) {
+    chat(name: $name) {
+      timestamp
+      message
+    }
+  }
+`
 const Subscription = gql`
   query chat($name: String!) {
     chat(name: $name) {
